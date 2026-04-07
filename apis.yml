@@ -8,13 +8,12 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
-  - GPU
-  - Cloud Computing
   - Artificial Intelligence
-  - Deep Learning
-  - Machine Learning
+  - Cloud Computing
   - Compute
+  - Deep Learning
+  - GPU
+  - Machine Learning
 created: '2025-01-07'
 modified: '2026-03-16'
 url: >-
@@ -33,11 +32,11 @@ apis:
     humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
     baseURL: https://cloud.lambdalabs.com/api/v1
     tags:
-      - GPU
       - Cloud
-      - Instances
       - Compute
+      - GPU
       - Infrastructure
+      - Instances
     properties:
       - type: Documentation
         url: https://docs.lambda.ai/public-cloud/cloud-api/
@@ -49,8 +48,7 @@ apis:
       Lambda gives your team instant access to the compute you need to build and
       deploy Artificial Intelligence.
     humanURL: https://lambdalabs.com/about
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: https://lambdalabs.com/about
