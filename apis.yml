@@ -1,8 +1,8 @@
 aid: lambda
 name: Lambda
 description: >-
-  Lambda gives your team instant access to the compute you need to build and
-  deploy Artificial Intelligence. 
+  Lambda gives your team instant access to the compute you need to build and deploy
+  Artificial Intelligence.
 type: Index
 position: Consumer
 access: 3rd-Party
