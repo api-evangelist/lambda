@@ -1,0 +1,56 @@
+name: Lambda Cloud API Capabilities
+description: Shared per-API capability definitions and workflow compositions for Lambda Cloud API.
+capabilities:
+  - name: Instance Management
+    description: Launch, monitor, restart, and terminate GPU cloud instances.
+    apis:
+      - lambda:cloud-api
+    operations:
+      - listInstances
+      - getInstance
+      - launchInstance
+      - restartInstances
+      - terminateInstances
+    workflows:
+      - name: Provision Training Environment
+        description: Launch a GPU instance with persistent storage for model training.
+        steps:
+          - operation: listInstanceTypes
+            description: Check available GPU instance types and regional capacity.
+          - operation: listSshKeys
+            description: Verify SSH key exists for instance access.
+          - operation: listFileSystems
+            description: Verify persistent file system exists for data.
+          - operation: launchInstance
+            description: Launch the GPU instance with SSH key and file system attached.
+          - operation: getInstance
+            description: Poll instance status until active.
+      - name: Teardown Environment
+        description: Terminate instances after training completes.
+        steps:
+          - operation: listInstances
+            description: List running instances to identify targets.
+          - operation: terminateInstances
+            description: Terminate the completed training instances.
+
+  - name: Infrastructure Configuration
+    description: Manage SSH keys, file systems, and available resources.
+    apis:
+      - lambda:cloud-api
+    operations:
+      - listSshKeys
+      - addSshKey
+      - deleteSshKey
+      - listFileSystems
+      - listInstanceTypes
+      - listImages
+    workflows:
+      - name: Setup Account Infrastructure
+        description: Configure SSH keys and check available resources.
+        steps:
+          - operation: addSshKey
+            description: Add an SSH key for instance access.
+          - operation: listInstanceTypes
+            description: Review available GPU instance types and pricing.
+          - operation: listImages
+            description: Review available machine images.

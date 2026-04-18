@@ -1,0 +1,609 @@
+openapi: 3.1.0
+info:
+  title: Lambda Cloud API
+  description: >-
+    The Lambda Cloud API allows you to manage GPU cloud instances programmatically.
+    You can launch, list, restart, and terminate instances, manage SSH keys, list
+    available instance types and images, and manage persistent storage file systems
+    through a RESTful interface.
+  version: v1
+  contact:
+    name: Lambda Support
+    url: https://support.lambdalabs.com/hc/en-us
+  license:
+    name: Lambda Terms of Service
+    url: https://lambda.ai/legal/terms-of-service
+servers:
+  - url: https://cloud.lambdalabs.com/api/v1
+    description: Lambda Cloud API production endpoint
+security:
+  - apiKey: []
+tags:
+  - name: Instances
+    description: Operations for managing GPU cloud instances.
+  - name: Instance Types
+    description: Operations for listing available GPU instance types.
+  - name: SSH Keys
+    description: Operations for managing SSH keys.
+  - name: File Systems
+    description: Operations for managing persistent storage file systems.
+  - name: Images
+    description: Operations for listing available machine images.
+paths:
+  /instances:
+    get:
+      operationId: listInstances
+      summary: List Running Instances
+      description: Returns a list of all running instances in your account.
+      tags:
+        - Instances
+      responses:
+        '200':
+          description: A list of running instances.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Instance'
+              example:
+                data:
+                  - id: 0920582c7ff041399e34823a0be62549
+                    name: training-node-1
+                    ip: 10.10.10.1
+                    status: active
+                    ssh_key_names:
+                      - my-ssh-key
+                    file_system_names:
+                      - my-file-system
+                    region:
+                      name: us-tx-3
+                      description: Austin, Texas
+                    instance_type:
+                      name: gpu_1x_a100_sxm4
+                      description: 1x A100 SXM4 (40 GB)
+                    hostname: 10-0-8-196.cloud.lambdalabs.com
+                    jupyter_token: 2c60c3b5a671060bc6148900a3ac7a42
+                    jupyter_url: https://jupyter-2c60c3b5a671060bc6148900a3ac7a42.cloud.lambdalabs.com
+        '401':
+          description: Unauthorized - Invalid API key.
+        '403':
+          description: Forbidden.
+        '500':
+          description: Internal Server Error.
+  /instance-operations/launch:
+    post:
+      operationId: launchInstance
+      summary: Launch An Instance
+      description: >-
+        Launches one or more instances with the given configuration. Returns the
+        IDs of the launched instances.
+      tags:
+        - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LaunchInstanceRequest'
+            example:
+              region_name: us-tx-3
+              instance_type_name: gpu_1x_a100_sxm4
+              ssh_key_names:
+                - my-ssh-key
+              file_system_names:
+                - my-file-system
+              quantity: 1
+              name: training-node-1
+      responses:
+        '200':
+          description: Instances launched successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      instance_ids:
+                        type: array
+                        items:
+                          type: string
+              example:
+                data:
+                  instance_ids:
+                    - 0920582c7ff041399e34823a0be62549
+        '400':
+          description: Bad Request - Invalid parameters.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden - Insufficient capacity.
+        '500':
+          description: Internal Server Error.
+  /instance-operations/restart:
+    post:
+      operationId: restartInstances
+      summary: Restart Instances
+      description: Restarts the given instances.
+      tags:
+        - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - instance_ids
+              properties:
+                instance_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: The IDs of the instances to restart.
+            example:
+              instance_ids:
+                - 0920582c7ff041399e34823a0be62549
+      responses:
+        '200':
+          description: Instances restarted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      restarted_instances:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            status:
+                              type: string
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Instance not found.
+        '500':
+          description: Internal Server Error.
+  /instance-operations/terminate:
+    post:
+      operationId: terminateInstances
+      summary: Terminate Instances
+      description: Terminates the given instances.
+      tags:
+        - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - instance_ids
+              properties:
+                instance_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: The IDs of the instances to terminate.
+            example:
+              instance_ids:
+                - 0920582c7ff041399e34823a0be62549
+      responses:
+        '200':
+          description: Instances terminated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      terminated_instances:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            status:
+                              type: string
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Instance not found.
+        '500':
+          description: Internal Server Error.
+  /instances/{id}:
+    get:
+      operationId: getInstance
+      summary: Get Instance Details
+      description: Returns details for a specific instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the instance.
+      responses:
+        '200':
+          description: Instance details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Instance'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Instance not found.
+        '500':
+          description: Internal Server Error.
+  /instance-types:
+    get:
+      operationId: listInstanceTypes
+      summary: List Instance Types
+      description: >-
+        Returns a list of available instance types with their specifications
+        and region availability.
+      tags:
+        - Instance Types
+      responses:
+        '200':
+          description: A list of available instance types.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/InstanceType'
+              example:
+                data:
+                  gpu_1x_a100_sxm4:
+                    instance_type:
+                      name: gpu_1x_a100_sxm4
+                      description: 1x A100 SXM4 (40 GB)
+                      price_cents_per_hour: 110
+                      specs:
+                        vcpus: 24
+                        memory_gib: 85
+                        storage_gib: 512
+                    regions_with_capacity_available:
+                      - name: us-tx-3
+                        description: Austin, Texas
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+  /ssh-keys:
+    get:
+      operationId: listSshKeys
+      summary: List SSH Keys
+      description: Returns a list of SSH keys saved in your account.
+      tags:
+        - SSH Keys
+      responses:
+        '200':
+          description: A list of SSH keys.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SshKey'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+    post:
+      operationId: addSshKey
+      summary: Add SSH Key
+      description: Adds an SSH key to your account.
+      tags:
+        - SSH Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  description: The name for the SSH key.
+                public_key:
+                  type: string
+                  description: >-
+                    The public key content. If omitted, a new key pair is generated
+                    and the private key is returned.
+            example:
+              name: my-ssh-key
+              public_key: ssh-rsa AAAAB3NzaC1yc2EAAA...
+      responses:
+        '200':
+          description: SSH key added successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SshKey'
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+  /ssh-keys/{id}:
+    delete:
+      operationId: deleteSshKey
+      summary: Delete SSH Key
+      description: Deletes an SSH key from your account.
+      tags:
+        - SSH Keys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the SSH key.
+      responses:
+        '200':
+          description: SSH key deleted successfully.
+        '401':
+          description: Unauthorized.
+        '404':
+          description: SSH key not found.
+        '500':
+          description: Internal Server Error.
+  /file-systems:
+    get:
+      operationId: listFileSystems
+      summary: List File Systems
+      description: Returns a list of persistent storage file systems.
+      tags:
+        - File Systems
+      responses:
+        '200':
+          description: A list of file systems.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FileSystem'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+  /images:
+    get:
+      operationId: listImages
+      summary: List Images
+      description: Returns a list of available machine images.
+      tags:
+        - Images
+      responses:
+        '200':
+          description: A list of available images.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Image'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+components:
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: basic
+      description: >-
+        Use your Lambda Cloud API key as the username with no password.
+        Pass via Authorization header as Basic auth.
+  schemas:
+    Instance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the instance.
+        name:
+          type: string
+          nullable: true
+          description: User-provided name for the instance.
+        ip:
+          type: string
+          description: IPv4 address of the instance.
+        status:
+          type: string
+          enum:
+            - active
+            - booting
+            - unhealthy
+            - terminated
+          description: Current status of the instance.
+        ssh_key_names:
+          type: array
+          items:
+            type: string
+          description: Names of SSH keys attached to the instance.
+        file_system_names:
+          type: array
+          items:
+            type: string
+          description: Names of file systems attached to the instance.
+        region:
+          $ref: '#/components/schemas/Region'
+        instance_type:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+        hostname:
+          type: string
+          description: Hostname of the instance.
+        jupyter_token:
+          type: string
+          description: Token for accessing the Jupyter notebook.
+        jupyter_url:
+          type: string
+          description: URL for accessing the Jupyter notebook.
+    LaunchInstanceRequest:
+      type: object
+      required:
+        - region_name
+        - instance_type_name
+        - ssh_key_names
+      properties:
+        region_name:
+          type: string
+          description: The region to launch the instance in.
+        instance_type_name:
+          type: string
+          description: The type of instance to launch.
+        ssh_key_names:
+          type: array
+          items:
+            type: string
+          description: SSH key names to attach to the instance.
+        file_system_names:
+          type: array
+          items:
+            type: string
+          description: File system names to attach to the instance.
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 1
+          description: Number of instances to launch (currently max 1).
+        name:
+          type: string
+          description: A name for the instance.
+    InstanceType:
+      type: object
+      properties:
+        instance_type:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            price_cents_per_hour:
+              type: integer
+              description: Price in cents per hour.
+            specs:
+              type: object
+              properties:
+                vcpus:
+                  type: integer
+                memory_gib:
+                  type: integer
+                storage_gib:
+                  type: integer
+        regions_with_capacity_available:
+          type: array
+          items:
+            $ref: '#/components/schemas/Region'
+    Region:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Region identifier.
+        description:
+          type: string
+          description: Human-readable region name.
+    SshKey:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the SSH key.
+        name:
+          type: string
+          description: Name of the SSH key.
+        public_key:
+          type: string
+          description: The public key content.
+        private_key:
+          type: string
+          nullable: true
+          description: >-
+            The private key content. Only returned when a new key pair is
+            generated.
+    FileSystem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the file system.
+        name:
+          type: string
+          description: Name of the file system.
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp.
+        mount_point:
+          type: string
+          description: Mount point path on instances.
+        region:
+          $ref: '#/components/schemas/Region'
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the image.
+        name:
+          type: string
+          description: Name of the image.
+        description:
+          type: string
+          description: Description of the image.
+        created_at:
+          type: string
+          format: date-time

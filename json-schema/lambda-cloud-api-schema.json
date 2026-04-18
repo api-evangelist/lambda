@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/lambda/json-schema/lambda-cloud-api-schema.json",
+  "title": "Lambda Cloud API Resources",
+  "description": "JSON Schema for Lambda Cloud API resources.",
+  "definitions": {
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the instance."
+        },
+        "name": {
+          "type": ["string", "null"],
+          "description": "User-provided name for the instance."
+        },
+        "ip": {
+          "type": "string",
+          "description": "IPv4 address of the instance."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "booting", "unhealthy", "terminated"]
+        },
+        "ssh_key_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "file_system_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "region": { "$ref": "#/definitions/Region" },
+        "instance_type": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" }
+          }
+        },
+        "hostname": { "type": "string" },
+        "jupyter_token": { "type": "string" },
+        "jupyter_url": { "type": "string" }
+      },
+      "required": ["id", "status"]
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "InstanceType": {
+      "type": "object",
+      "properties": {
+        "instance_type": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "price_cents_per_hour": { "type": "integer" },
+            "specs": {
+              "type": "object",
+              "properties": {
+                "vcpus": { "type": "integer" },
+                "memory_gib": { "type": "integer" },
+                "storage_gib": { "type": "integer" }
+              }
+            }
+          }
+        },
+        "regions_with_capacity_available": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Region" }
+        }
+      }
+    },
+    "SshKey": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "public_key": { "type": "string" },
+        "private_key": { "type": ["string", "null"] }
+      },
+      "required": ["id", "name"]
+    },
+    "FileSystem": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "created": { "type": "string", "format": "date-time" },
+        "mount_point": { "type": "string" },
+        "region": { "$ref": "#/definitions/Region" }
+      },
+      "required": ["id", "name"]
+    }
+  }
+}

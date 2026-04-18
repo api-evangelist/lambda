@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "lambda": "https://cloud.lambdalabs.com/api/v1/",
+    "Instance": {
+      "@id": "lambda:Instance",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "ip": "lambda:ipAddress",
+        "status": "lambda:instanceStatus",
+        "ssh_key_names": "lambda:sshKeyNames",
+        "file_system_names": "lambda:fileSystemNames",
+        "region": "lambda:region",
+        "instance_type": "lambda:instanceType",
+        "hostname": "lambda:hostname",
+        "jupyter_token": "lambda:jupyterToken",
+        "jupyter_url": "schema:url"
+      }
+    },
+    "Region": {
+      "@id": "lambda:Region",
+      "@context": {
+        "name": "schema:identifier",
+        "description": "schema:name"
+      }
+    },
+    "SshKey": {
+      "@id": "lambda:SshKey",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "public_key": "lambda:publicKey"
+      }
+    },
+    "FileSystem": {
+      "@id": "lambda:FileSystem",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "created": "schema:dateCreated",
+        "mount_point": "lambda:mountPoint",
+        "region": "lambda:region"
+      }
+    }
+  }
+}

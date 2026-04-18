@@ -1,0 +1,39 @@
+name: Lambda Cloud API Vocabulary
+description: Vocabulary and taxonomy schema mapping operational and capability dimensions for Lambda Cloud API.
+domains:
+  - name: GPU Cloud Computing
+    concepts:
+      - term: GPU Instance
+        definition: A cloud virtual machine equipped with one or more NVIDIA GPUs for compute-intensive workloads.
+        aliases:
+          - Cloud Instance
+          - VM
+      - term: Instance Type
+        definition: A predefined configuration specifying GPU model, vCPUs, memory, and storage capacity.
+      - term: Region
+        definition: A geographic location where Lambda Cloud infrastructure is deployed.
+  - name: Infrastructure Management
+    concepts:
+      - term: SSH Key
+        definition: A public/private key pair used for secure shell access to instances.
+      - term: Persistent Storage
+        definition: Network-attached file systems that persist across instance lifecycles.
+        aliases:
+          - File System
+          - Shared Storage
+      - term: Machine Image
+        definition: A pre-configured operating system and software stack for launching instances.
+  - name: Deep Learning Workflows
+    concepts:
+      - term: Model Training
+        definition: The process of training machine learning models on GPU-accelerated hardware.
+      - term: Inference
+        definition: Running a trained model to generate predictions on new data.
+      - term: Jupyter Notebook
+        definition: Interactive computing environment for data science and ML experimentation.
+tags:
+  - Artificial Intelligence
+  - Cloud Computing
+  - Deep Learning
+  - GPU
+  - Machine Learning
