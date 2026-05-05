@@ -1,0 +1,13 @@
+{
+  "repo": "lambda",
+  "feeds": [
+    {
+      "source": "https://lambda.ai/blog",
+      "feed_url": "https://lambda.ai/blog/rss.xml",
+      "saved": 10,
+      "title": "The Lambda Deep Learning Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:30:22Z"
+}
