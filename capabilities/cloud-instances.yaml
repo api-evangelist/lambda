@@ -1,0 +1,239 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lambda Cloud API — Instances
+  description: 'Lambda Cloud API — Instances. 5 operations. Lead operation: Launch An Instance. Self-contained Naftiko capability
+    covering one Lambda business surface.'
+  tags:
+  - Lambda
+  - Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LAMBDA_API_KEY: LAMBDA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-instances
+    baseUri: https://cloud.lambdalabs.com/api/v1
+    description: Lambda Cloud API — Instances business capability. Self-contained, no shared references.
+    resources:
+    - name: instance-operations-launch
+      path: /instance-operations/launch
+      operations:
+      - name: launchinstance
+        method: POST
+        description: Launch An Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: instance-operations-restart
+      path: /instance-operations/restart
+      operations:
+      - name: restartinstances
+        method: POST
+        description: Restart Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: instance-operations-terminate
+      path: /instance-operations/terminate
+      operations:
+      - name: terminateinstances
+        method: POST
+        description: Terminate Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: instances
+      path: /instances
+      operations:
+      - name: listinstances
+        method: GET
+        description: List Running Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: instances-id
+      path: /instances/{id}
+      operations:
+      - name: getinstance
+        method: GET
+        description: Get Instance Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the instance.
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.LAMBDA_USER}}'
+      password: '{{env.LAMBDA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: cloud-instances-rest
+    port: 8080
+    description: REST adapter for Lambda Cloud API — Instances. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/instance-operations/launch
+      name: instance-operations-launch
+      description: REST surface for instance-operations-launch.
+      operations:
+      - method: POST
+        name: launchinstance
+        description: Launch An Instance
+        call: cloud-instances.launchinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instance-operations/restart
+      name: instance-operations-restart
+      description: REST surface for instance-operations-restart.
+      operations:
+      - method: POST
+        name: restartinstances
+        description: Restart Instances
+        call: cloud-instances.restartinstances
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instance-operations/terminate
+      name: instance-operations-terminate
+      description: REST surface for instance-operations-terminate.
+      operations:
+      - method: POST
+        name: terminateinstances
+        description: Terminate Instances
+        call: cloud-instances.terminateinstances
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances
+      name: instances
+      description: REST surface for instances.
+      operations:
+      - method: GET
+        name: listinstances
+        description: List Running Instances
+        call: cloud-instances.listinstances
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}
+      name: instances-id
+      description: REST surface for instances-id.
+      operations:
+      - method: GET
+        name: getinstance
+        description: Get Instance Details
+        call: cloud-instances.getinstance
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lambda Cloud API — Instances. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: launch-instance
+      description: Launch An Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-instances.launchinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restart-instances
+      description: Restart Instances
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-instances.restartinstances
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-instances
+      description: Terminate Instances
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-instances.terminateinstances
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-running-instances
+      description: List Running Instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-instances.listinstances
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-details
+      description: Get Instance Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-instances.getinstance
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

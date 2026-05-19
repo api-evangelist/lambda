@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lambda Cloud API — SSH Keys
+  description: 'Lambda Cloud API — SSH Keys. 3 operations. Lead operation: List SSH Keys. Self-contained Naftiko capability
+    covering one Lambda business surface.'
+  tags:
+  - Lambda
+  - SSH Keys
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LAMBDA_API_KEY: LAMBDA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-ssh-keys
+    baseUri: https://cloud.lambdalabs.com/api/v1
+    description: Lambda Cloud API — SSH Keys business capability. Self-contained, no shared references.
+    resources:
+    - name: ssh-keys
+      path: /ssh-keys
+      operations:
+      - name: listsshkeys
+        method: GET
+        description: List SSH Keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addsshkey
+        method: POST
+        description: Add SSH Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ssh-keys-id
+      path: /ssh-keys/{id}
+      operations:
+      - name: deletesshkey
+        method: DELETE
+        description: Delete SSH Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the SSH key.
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.LAMBDA_USER}}'
+      password: '{{env.LAMBDA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: cloud-ssh-keys-rest
+    port: 8080
+    description: REST adapter for Lambda Cloud API — SSH Keys. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/ssh-keys
+      name: ssh-keys
+      description: REST surface for ssh-keys.
+      operations:
+      - method: GET
+        name: listsshkeys
+        description: List SSH Keys
+        call: cloud-ssh-keys.listsshkeys
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addsshkey
+        description: Add SSH Key
+        call: cloud-ssh-keys.addsshkey
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ssh-keys/{id}
+      name: ssh-keys-id
+      description: REST surface for ssh-keys-id.
+      operations:
+      - method: DELETE
+        name: deletesshkey
+        description: Delete SSH Key
+        call: cloud-ssh-keys.deletesshkey
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-ssh-keys-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lambda Cloud API — SSH Keys. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-ssh-keys
+      description: List SSH Keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-ssh-keys.listsshkeys
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-ssh-key
+      description: Add SSH Key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-ssh-keys.addsshkey
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ssh-key
+      description: Delete SSH Key
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-ssh-keys.deletesshkey
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

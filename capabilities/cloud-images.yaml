@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lambda Cloud API — Images
+  description: 'Lambda Cloud API — Images. 1 operations. Lead operation: List Images. Self-contained Naftiko capability covering
+    one Lambda business surface.'
+  tags:
+  - Lambda
+  - Images
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LAMBDA_API_KEY: LAMBDA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-images
+    baseUri: https://cloud.lambdalabs.com/api/v1
+    description: Lambda Cloud API — Images business capability. Self-contained, no shared references.
+    resources:
+    - name: images
+      path: /images
+      operations:
+      - name: listimages
+        method: GET
+        description: List Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.LAMBDA_USER}}'
+      password: '{{env.LAMBDA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: cloud-images-rest
+    port: 8080
+    description: REST adapter for Lambda Cloud API — Images. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/images
+      name: images
+      description: REST surface for images.
+      operations:
+      - method: GET
+        name: listimages
+        description: List Images
+        call: cloud-images.listimages
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lambda Cloud API — Images. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-images
+      description: List Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-images.listimages
+      outputParameters:
+      - type: object
+        mapping: $.

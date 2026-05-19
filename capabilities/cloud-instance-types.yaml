@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lambda Cloud API — Instance Types
+  description: 'Lambda Cloud API — Instance Types. 1 operations. Lead operation: List Instance Types. Self-contained Naftiko
+    capability covering one Lambda business surface.'
+  tags:
+  - Lambda
+  - Instance Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LAMBDA_API_KEY: LAMBDA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-instance-types
+    baseUri: https://cloud.lambdalabs.com/api/v1
+    description: Lambda Cloud API — Instance Types business capability. Self-contained, no shared references.
+    resources:
+    - name: instance-types
+      path: /instance-types
+      operations:
+      - name: listinstancetypes
+        method: GET
+        description: List Instance Types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.LAMBDA_USER}}'
+      password: '{{env.LAMBDA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: cloud-instance-types-rest
+    port: 8080
+    description: REST adapter for Lambda Cloud API — Instance Types. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/instance-types
+      name: instance-types
+      description: REST surface for instance-types.
+      operations:
+      - method: GET
+        name: listinstancetypes
+        description: List Instance Types
+        call: cloud-instance-types.listinstancetypes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-instance-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lambda Cloud API — Instance Types. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-instance-types
+      description: List Instance Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-instance-types.listinstancetypes
+      outputParameters:
+      - type: object
+        mapping: $.

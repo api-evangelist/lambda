@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lambda Cloud API — File Systems
+  description: 'Lambda Cloud API — File Systems. 1 operations. Lead operation: List File Systems. Self-contained Naftiko capability
+    covering one Lambda business surface.'
+  tags:
+  - Lambda
+  - File Systems
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LAMBDA_API_KEY: LAMBDA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-file-systems
+    baseUri: https://cloud.lambdalabs.com/api/v1
+    description: Lambda Cloud API — File Systems business capability. Self-contained, no shared references.
+    resources:
+    - name: file-systems
+      path: /file-systems
+      operations:
+      - name: listfilesystems
+        method: GET
+        description: List File Systems
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.LAMBDA_USER}}'
+      password: '{{env.LAMBDA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: cloud-file-systems-rest
+    port: 8080
+    description: REST adapter for Lambda Cloud API — File Systems. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/file-systems
+      name: file-systems
+      description: REST surface for file-systems.
+      operations:
+      - method: GET
+        name: listfilesystems
+        description: List File Systems
+        call: cloud-file-systems.listfilesystems
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-file-systems-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lambda Cloud API — File Systems. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-file-systems
+      description: List File Systems
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-file-systems.listfilesystems
+      outputParameters:
+      - type: object
+        mapping: $.
