@@ -2,11 +2,11 @@
   "repo": "lambda",
   "feeds": [
     {
-      "source": "https://lambda.ai/blog/atom.xml",
-      "feed_url": "https://lambda.ai/blog/atom.xml",
+      "source": "https://lambda.ai/blog",
+      "feed_url": "https://lambda.ai/blog/rss.xml",
       "title": "",
-      "saved": 0,
-      "method": "feed"
+      "saved": 1,
+      "method": "discovered"
     },
     {
       "source": "https://lambda.ai/pricing",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 20,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 23,
+  "fetched": "2026-06-14T20:42:17Z"
 }
