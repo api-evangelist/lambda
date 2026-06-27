@@ -62,9 +62,9 @@ common:
     url: https://status.lambda.ai
   - type: Support
     url: https://support.lambdalabs.com/hc/en-us
-  - type: SignUp
+  - type: Signup
     url: https://cloud.lambdalabs.com/sign-up
-  - type: SDK
+  - type: SDKs
     url: https://pypi.org/project/lambda-cloud-client/
   - type: GitHubOrganization
     url: https://github.com/LambdaLabsML
