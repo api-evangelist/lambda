@@ -46,6 +46,14 @@ apis:
       - type: Support
         url: https://support.lambdalabs.com/hc/en-us
 common:
+  - type: TrustCenter
+    url: security/lambda-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/lambda-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/lambda-domain-security.yml
+  - type: Authentication
+    url: authentication/lambda-authentication.yml
   - type: Portal
     url: https://lambda.ai/cloud
   - type: Documentation

@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/lambda-cloud-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: apiKey
+  type: http
+  scheme: basic
+  description: Use your Lambda Cloud API key as the username with no password. Pass via Authorization
+    header as Basic auth.
+  sources:
+  - openapi/lambda-cloud-api-openapi.yml
