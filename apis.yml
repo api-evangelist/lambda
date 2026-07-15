@@ -46,6 +46,8 @@ apis:
       - type: Support
         url: https://support.lambdalabs.com/hc/en-us
 common:
+  - type: AgenticAccess
+    url: agentic-access/lambda-agentic-access.yml
   - type: TrustCenter
     url: security/lambda-trust-center.yml
   - type: VulnerabilityDisclosure
