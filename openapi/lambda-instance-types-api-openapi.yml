@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: Lambda Cloud File Systems Instance Types API
+  description: The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.
+  version: v1
+  contact:
+    name: Lambda Support
+    url: https://support.lambdalabs.com/hc/en-us
+  license:
+    name: Lambda Terms of Service
+    url: https://lambda.ai/legal/terms-of-service
+servers:
+- url: https://cloud.lambdalabs.com/api/v1
+  description: Lambda Cloud API production endpoint
+security:
+- apiKey: []
+tags:
+- name: Instance Types
+  description: Operations for listing available GPU instance types.
+paths:
+  /instance-types:
+    get:
+      operationId: listInstanceTypes
+      summary: List Instance Types
+      description: Returns a list of available instance types with their specifications and region availability.
+      tags:
+      - Instance Types
+      responses:
+        '200':
+          description: A list of available instance types.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/InstanceType'
+              example:
+                data:
+                  gpu_1x_a100_sxm4:
+                    instance_type:
+                      name: gpu_1x_a100_sxm4
+                      description: 1x A100 SXM4 (40 GB)
+                      price_cents_per_hour: 110
+                      specs:
+                        vcpus: 24
+                        memory_gib: 85
+                        storage_gib: 512
+                    regions_with_capacity_available:
+                    - name: us-tx-3
+                      description: Austin, Texas
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    InstanceType:
+      type: object
+      properties:
+        instance_type:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            price_cents_per_hour:
+              type: integer
+              description: Price in cents per hour.
+            specs:
+              type: object
+              properties:
+                vcpus:
+                  type: integer
+                memory_gib:
+                  type: integer
+                storage_gib:
+                  type: integer
+        regions_with_capacity_available:
+          type: array
+          items:
+            $ref: '#/components/schemas/Region'
+    Region:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Region identifier.
+        description:
+          type: string
+          description: Human-readable region name.
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: basic
+      description: Use your Lambda Cloud API key as the username with no password. Pass via Authorization header as Basic auth.

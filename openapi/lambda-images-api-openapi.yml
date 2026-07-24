@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Lambda Cloud File Systems Images API
+  description: The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.
+  version: v1
+  contact:
+    name: Lambda Support
+    url: https://support.lambdalabs.com/hc/en-us
+  license:
+    name: Lambda Terms of Service
+    url: https://lambda.ai/legal/terms-of-service
+servers:
+- url: https://cloud.lambdalabs.com/api/v1
+  description: Lambda Cloud API production endpoint
+security:
+- apiKey: []
+tags:
+- name: Images
+  description: Operations for listing available machine images.
+paths:
+  /images:
+    get:
+      operationId: listImages
+      summary: List Images
+      description: Returns a list of available machine images.
+      tags:
+      - Images
+      responses:
+        '200':
+          description: A list of available images.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Image'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the image.
+        name:
+          type: string
+          description: Name of the image.
+        description:
+          type: string
+          description: Description of the image.
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: basic
+      description: Use your Lambda Cloud API key as the username with no password. Pass via Authorization header as Basic auth.
