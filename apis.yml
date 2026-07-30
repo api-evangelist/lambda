@@ -5,9 +5,22 @@ description: >-
   Cloud provides on-demand GPU instances powered by NVIDIA A100, H100, and other high-performance GPUs for deep learning
   training and inference workloads.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lambda.png
 tags:
   - Artificial Intelligence
   - Cloud Computing
@@ -20,32 +33,79 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/lambda/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: lambda:cloud-api
-    name: Lambda Cloud API
-    description: >-
-      The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and
-      terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file
-      systems through a RESTful interface.
-    humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
-    baseURL: https://cloud.lambdalabs.com/api/v1
-    tags:
-      - Cloud
-      - Compute
-      - File Systems
-      - GPU
-      - Instances
-      - SSH Keys
-    properties:
-      - type: Documentation
-        url: https://docs.lambda.ai/public-cloud/cloud-api/
-      - type: OpenAPI
-        url: openapi/lambda-cloud-api-openapi.yml
-      - type: APIReference
-        url: https://cloud.lambdalabs.com/api/v1/docs
-    contact:
-      - type: Support
-        url: https://support.lambdalabs.com/hc/en-us
+- aid: lambda:lambda-file-systems-api
+  name: Lambda File Systems API
+  description: Operations for managing persistent storage file systems.
+  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
+  baseURL: https://cloud.lambdalabs.com/api/v1
+  tags:
+  - File Systems
+  properties:
+  - type: OpenAPI
+    url: openapi/lambda-file-systems-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lambda.ai/public-cloud/cloud-api/
+  - type: APIReference
+    url: https://cloud.lambdalabs.com/api/v1/docs
+- aid: lambda:lambda-images-api
+  name: Lambda Images API
+  description: Operations for listing available machine images.
+  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
+  baseURL: https://cloud.lambdalabs.com/api/v1
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/lambda-images-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lambda.ai/public-cloud/cloud-api/
+  - type: APIReference
+    url: https://cloud.lambdalabs.com/api/v1/docs
+- aid: lambda:lambda-instance-types-api
+  name: Lambda Instance Types API
+  description: Operations for listing available GPU instance types.
+  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
+  baseURL: https://cloud.lambdalabs.com/api/v1
+  tags:
+  - Instance Types
+  properties:
+  - type: OpenAPI
+    url: openapi/lambda-instance-types-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lambda.ai/public-cloud/cloud-api/
+  - type: APIReference
+    url: https://cloud.lambdalabs.com/api/v1/docs
+- aid: lambda:lambda-instances-api
+  name: Lambda Instances API
+  description: Operations for managing GPU cloud instances.
+  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
+  baseURL: https://cloud.lambdalabs.com/api/v1
+  tags:
+  - Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/lambda-instances-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lambda.ai/public-cloud/cloud-api/
+  - type: APIReference
+    url: https://cloud.lambdalabs.com/api/v1/docs
+- aid: lambda:lambda-ssh-keys-api
+  name: Lambda SSH Keys API
+  description: Operations for managing SSH keys.
+  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
+  baseURL: https://cloud.lambdalabs.com/api/v1
+  tags:
+  - SSH Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/lambda-ssh-keys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lambda.ai/public-cloud/cloud-api/
+  - type: APIReference
+    url: https://cloud.lambdalabs.com/api/v1/docs
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/lambda/overview
   - type: AgenticAccess
     url: agentic-access/lambda-agentic-access.yml
   - type: TrustCenter
