@@ -1,0 +1,1351 @@
+{
+  "info": {
+    "_postman_id": "adee05a8-6887-46bf-b6d4-873fafd87baf",
+    "name": "Lambda Cloud File Systems Instances API",
+    "description": "The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.\n\nContact Support:\n Name: Lambda Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:23.000Z",
+    "updatedAt": "2026-07-28T02:02:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-adee05a8-6887-46bf-b6d4-873fafd87baf"
+  },
+  "item": [
+    {
+      "name": "instances",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Instance Details",
+              "id": "7206b813-dee4-4e51-98b6-665f9dc91adf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "39c21214-ea38-477b-8193-495a7cab9019",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific instance."
+              },
+              "response": [
+                {
+                  "id": "ae2f69cd-5dc0-4ccb-9b80-a1a61ac51998",
+                  "name": "Instance details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"status\": \"unhealthy\",\n    \"ssh_key_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"file_system_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"region\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"instance_type\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"hostname\": \"<string>\",\n    \"jupyter_token\": \"<string>\",\n    \"jupyter_url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-ae2f69cd-5dc0-4ccb-9b80-a1a61ac51998"
+                },
+                {
+                  "id": "0083b66a-cf9b-4ebe-8352-37d35d882298",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-0083b66a-cf9b-4ebe-8352-37d35d882298"
+                },
+                {
+                  "id": "a074aee2-7943-4c80-983c-2da4293927be",
+                  "name": "Instance not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-a074aee2-7943-4c80-983c-2da4293927be"
+                },
+                {
+                  "id": "6d25d694-d619-4821-b24f-2386585576b0",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-6d25d694-d619-4821-b24f-2386585576b0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-7206b813-dee4-4e51-98b6-665f9dc91adf"
+            }
+          ],
+          "id": "28f03f29-d810-48cd-b453-17f50ae648ac",
+          "createdAt": "2026-07-28T02:02:23.000Z",
+          "updatedAt": "2026-07-28T02:02:23.000Z",
+          "uid": "35240-28f03f29-d810-48cd-b453-17f50ae648ac"
+        },
+        {
+          "name": "List Running Instances",
+          "id": "eb390f19-ae5f-4460-96f9-cbc86b372d09",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/instances",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instances"
+              ]
+            },
+            "description": "Returns a list of all running instances in your account."
+          },
+          "response": [
+            {
+              "id": "1b9a8129-ff8c-452b-9655-11b25200d191",
+              "name": "A list of running instances.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"status\": \"active\",\n      \"ssh_key_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"file_system_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"region\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"instance_type\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"hostname\": \"<string>\",\n      \"jupyter_token\": \"<string>\",\n      \"jupyter_url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"status\": \"booting\",\n      \"ssh_key_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"file_system_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"region\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"instance_type\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"hostname\": \"<string>\",\n      \"jupyter_token\": \"<string>\",\n      \"jupyter_url\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-1b9a8129-ff8c-452b-9655-11b25200d191"
+            },
+            {
+              "id": "29eb3e07-8c77-46de-9bbd-2fef40a1eb1b",
+              "name": "Unauthorized - Invalid API key.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-29eb3e07-8c77-46de-9bbd-2fef40a1eb1b"
+            },
+            {
+              "id": "79c4e565-a4dd-4bda-ade6-f7685e735762",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-79c4e565-a4dd-4bda-ade6-f7685e735762"
+            },
+            {
+              "id": "36ce2686-c0cd-45a9-8ad0-525783aeb184",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-36ce2686-c0cd-45a9-8ad0-525783aeb184"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:23.000Z",
+          "updatedAt": "2026-07-28T02:02:23.000Z",
+          "uid": "35240-eb390f19-ae5f-4460-96f9-cbc86b372d09"
+        }
+      ],
+      "id": "f4c4e27e-8859-4870-9eb5-f3f8d89ac15e",
+      "createdAt": "2026-07-28T02:02:23.000Z",
+      "updatedAt": "2026-07-28T02:02:23.000Z",
+      "uid": "35240-f4c4e27e-8859-4870-9eb5-f3f8d89ac15e"
+    },
+    {
+      "name": "instance-operations",
+      "item": [
+        {
+          "name": "launch",
+          "item": [
+            {
+              "name": "Launch An Instance",
+              "id": "a75003e3-ba63-479c-91db-d0be29f53543",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"region_name\": \"<string>\",\n  \"instance_type_name\": \"<string>\",\n  \"ssh_key_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_system_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"quantity\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instance-operations/launch",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instance-operations",
+                    "launch"
+                  ]
+                },
+                "description": "Launches one or more instances with the given configuration. Returns the IDs of the launched instances."
+              },
+              "response": [
+                {
+                  "id": "7f9fa644-5f40-4b27-b694-1f378a2638c1",
+                  "name": "Instances launched successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"region_name\": \"<string>\",\n  \"instance_type_name\": \"<string>\",\n  \"ssh_key_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_system_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"quantity\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/launch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "launch"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"instance_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-7f9fa644-5f40-4b27-b694-1f378a2638c1"
+                },
+                {
+                  "id": "e2b45208-ffba-4a86-9224-0892e7b52d6d",
+                  "name": "Bad Request - Invalid parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"region_name\": \"<string>\",\n  \"instance_type_name\": \"<string>\",\n  \"ssh_key_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_system_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"quantity\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/launch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "launch"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-e2b45208-ffba-4a86-9224-0892e7b52d6d"
+                },
+                {
+                  "id": "92c8e0b7-5b31-47af-874d-3da105e3d57a",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"region_name\": \"<string>\",\n  \"instance_type_name\": \"<string>\",\n  \"ssh_key_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_system_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"quantity\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/launch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "launch"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-92c8e0b7-5b31-47af-874d-3da105e3d57a"
+                },
+                {
+                  "id": "8ce8a44d-1345-4565-9b36-c3e6cd746457",
+                  "name": "Forbidden - Insufficient capacity.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"region_name\": \"<string>\",\n  \"instance_type_name\": \"<string>\",\n  \"ssh_key_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_system_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"quantity\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/launch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "launch"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-8ce8a44d-1345-4565-9b36-c3e6cd746457"
+                },
+                {
+                  "id": "f188cf6d-c24f-42e0-bcb1-e00ffb0811aa",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"region_name\": \"<string>\",\n  \"instance_type_name\": \"<string>\",\n  \"ssh_key_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_system_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"quantity\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/launch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "launch"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-f188cf6d-c24f-42e0-bcb1-e00ffb0811aa"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-a75003e3-ba63-479c-91db-d0be29f53543"
+            }
+          ],
+          "id": "279b792a-111b-49d1-b383-d3eed9b4f9e1",
+          "createdAt": "2026-07-28T02:02:23.000Z",
+          "updatedAt": "2026-07-28T02:02:23.000Z",
+          "uid": "35240-279b792a-111b-49d1-b383-d3eed9b4f9e1"
+        },
+        {
+          "name": "restart",
+          "item": [
+            {
+              "name": "Restart Instances",
+              "id": "3acb5b34-b1e1-42b5-a1d6-f3732ca0049f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instance-operations/restart",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instance-operations",
+                    "restart"
+                  ]
+                },
+                "description": "Restarts the given instances."
+              },
+              "response": [
+                {
+                  "id": "c749dea9-0d59-479c-b1b6-fc6352c79d83",
+                  "name": "Instances restarted successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "restart"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"restarted_instances\": [\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-c749dea9-0d59-479c-b1b6-fc6352c79d83"
+                },
+                {
+                  "id": "f42817db-92af-4b97-9b39-1f4f6da14a79",
+                  "name": "Bad Request.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "restart"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-f42817db-92af-4b97-9b39-1f4f6da14a79"
+                },
+                {
+                  "id": "5113b6c7-2082-4bfc-b7ee-b80c47abe8b1",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "restart"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-5113b6c7-2082-4bfc-b7ee-b80c47abe8b1"
+                },
+                {
+                  "id": "c6028158-7765-4735-9edc-f79d4d8ed4a0",
+                  "name": "Instance not found.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "restart"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-c6028158-7765-4735-9edc-f79d4d8ed4a0"
+                },
+                {
+                  "id": "cf13987e-a017-4638-812f-d01fe734331f",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "restart"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-cf13987e-a017-4638-812f-d01fe734331f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-3acb5b34-b1e1-42b5-a1d6-f3732ca0049f"
+            }
+          ],
+          "id": "bf908ea5-2d93-4584-8bd3-71c50bb48a48",
+          "createdAt": "2026-07-28T02:02:23.000Z",
+          "updatedAt": "2026-07-28T02:02:23.000Z",
+          "uid": "35240-bf908ea5-2d93-4584-8bd3-71c50bb48a48"
+        },
+        {
+          "name": "terminate",
+          "item": [
+            {
+              "name": "Terminate Instances",
+              "id": "0120ac92-4e03-4916-94ae-8965bc520efe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instance-operations/terminate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instance-operations",
+                    "terminate"
+                  ]
+                },
+                "description": "Terminates the given instances."
+              },
+              "response": [
+                {
+                  "id": "9ef01508-8e55-4f84-97dd-ce0284ba4b85",
+                  "name": "Instances terminated successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "terminate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"terminated_instances\": [\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-9ef01508-8e55-4f84-97dd-ce0284ba4b85"
+                },
+                {
+                  "id": "fc969a67-6db5-42a5-b636-14abff4100b1",
+                  "name": "Bad Request.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "terminate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-fc969a67-6db5-42a5-b636-14abff4100b1"
+                },
+                {
+                  "id": "a4ac6c86-d88b-49cc-aae5-b817965a1abd",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "terminate"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-a4ac6c86-d88b-49cc-aae5-b817965a1abd"
+                },
+                {
+                  "id": "5ea6b604-e83c-46e8-87ee-20ff14e57e5d",
+                  "name": "Instance not found.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "terminate"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-5ea6b604-e83c-46e8-87ee-20ff14e57e5d"
+                },
+                {
+                  "id": "f648ee86-de0b-4c7b-a362-0e0944512353",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instance-operations/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instance-operations",
+                        "terminate"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:23.000Z",
+                  "updatedAt": "2026-07-28T02:02:23.000Z",
+                  "uid": "35240-f648ee86-de0b-4c7b-a362-0e0944512353"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:23.000Z",
+              "updatedAt": "2026-07-28T02:02:23.000Z",
+              "uid": "35240-0120ac92-4e03-4916-94ae-8965bc520efe"
+            }
+          ],
+          "id": "2ca1389f-36c2-475c-af06-0bfbcd21a451",
+          "createdAt": "2026-07-28T02:02:23.000Z",
+          "updatedAt": "2026-07-28T02:02:23.000Z",
+          "uid": "35240-2ca1389f-36c2-475c-af06-0bfbcd21a451"
+        }
+      ],
+      "id": "2c3377b0-f4ce-4830-88c3-47fec4595814",
+      "createdAt": "2026-07-28T02:02:23.000Z",
+      "updatedAt": "2026-07-28T02:02:23.000Z",
+      "uid": "35240-2c3377b0-f4ce-4830-88c3-47fec4595814"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.lambdalabs.com/api/v1"
+    }
+  ]
+}

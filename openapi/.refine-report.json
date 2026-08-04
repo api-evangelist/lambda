@@ -1,0 +1,22 @@
+{
+  "provider": "lambda",
+  "sources": [
+    "lambda-file-systems-api-openapi.yml",
+    "lambda-images-api-openapi.yml",
+    "lambda-instance-types-api-openapi.yml",
+    "lambda-instances-api-openapi.yml",
+    "lambda-ssh-keys-api-openapi.yml"
+  ],
+  "outputs": [
+    "lambda-file-systems-api-openapi.yml",
+    "lambda-images-api-openapi.yml",
+    "lambda-instance-types-api-openapi.yml",
+    "lambda-instances-api-openapi.yml",
+    "lambda-ssh-keys-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

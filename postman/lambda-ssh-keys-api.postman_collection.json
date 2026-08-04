@@ -1,0 +1,625 @@
+{
+  "info": {
+    "_postman_id": "f72b9045-35e2-4df4-a9a0-e1cc518b8cd9",
+    "name": "Lambda Cloud File Systems SSH Keys API",
+    "description": "The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.\n\nContact Support:\n Name: Lambda Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:24.000Z",
+    "updatedAt": "2026-07-28T02:02:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f72b9045-35e2-4df4-a9a0-e1cc518b8cd9"
+  },
+  "item": [
+    {
+      "name": "ssh-keys",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Delete SSH Key",
+              "id": "da268d87-28d1-4e4c-90d5-e0269215e00a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d6b820f5-ed76-44ed-9a50-4726841a2e10",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the SSH key."
+                    }
+                  ]
+                },
+                "description": "Deletes an SSH key from your account."
+              },
+              "response": [
+                {
+                  "id": "e4fda1c2-e873-4d0a-8312-f37bf0f12acd",
+                  "name": "SSH key deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ssh-keys/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ssh-keys",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:24.000Z",
+                  "updatedAt": "2026-07-28T02:02:24.000Z",
+                  "uid": "35240-e4fda1c2-e873-4d0a-8312-f37bf0f12acd"
+                },
+                {
+                  "id": "16de757d-02f6-43c6-b12a-1e4405cc62cf",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ssh-keys/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ssh-keys",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:24.000Z",
+                  "updatedAt": "2026-07-28T02:02:24.000Z",
+                  "uid": "35240-16de757d-02f6-43c6-b12a-1e4405cc62cf"
+                },
+                {
+                  "id": "5188b324-192d-46ac-b5fa-377d5c4811a2",
+                  "name": "SSH key not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ssh-keys/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ssh-keys",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:24.000Z",
+                  "updatedAt": "2026-07-28T02:02:24.000Z",
+                  "uid": "35240-5188b324-192d-46ac-b5fa-377d5c4811a2"
+                },
+                {
+                  "id": "63df5012-e6da-4148-98ea-015d4803b629",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ssh-keys/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ssh-keys",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:02:24.000Z",
+                  "updatedAt": "2026-07-28T02:02:24.000Z",
+                  "uid": "35240-63df5012-e6da-4148-98ea-015d4803b629"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-da268d87-28d1-4e4c-90d5-e0269215e00a"
+            }
+          ],
+          "id": "2a854917-3ca2-4271-8d60-504bbfdede34",
+          "createdAt": "2026-07-28T02:02:24.000Z",
+          "updatedAt": "2026-07-28T02:02:24.000Z",
+          "uid": "35240-2a854917-3ca2-4271-8d60-504bbfdede34"
+        },
+        {
+          "name": "List SSH Keys",
+          "id": "ca28b16c-f64a-4cdf-b67e-7ef7b841a790",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ssh-keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ssh-keys"
+              ]
+            },
+            "description": "Returns a list of SSH keys saved in your account."
+          },
+          "response": [
+            {
+              "id": "e5c6a652-a9d3-4142-9946-0aa0ec2cb1c4",
+              "name": "A list of SSH keys.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"private_key\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"private_key\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-e5c6a652-a9d3-4142-9946-0aa0ec2cb1c4"
+            },
+            {
+              "id": "a9ac1c56-03e8-4a18-a237-3a375011a906",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-a9ac1c56-03e8-4a18-a237-3a375011a906"
+            },
+            {
+              "id": "d2e5441d-c840-486d-8797-faf43c0fd9cf",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-d2e5441d-c840-486d-8797-faf43c0fd9cf"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:24.000Z",
+          "updatedAt": "2026-07-28T02:02:24.000Z",
+          "uid": "35240-ca28b16c-f64a-4cdf-b67e-7ef7b841a790"
+        },
+        {
+          "name": "Add SSH Key",
+          "id": "37db9082-7846-4cbf-ac72-f95013ea2e23",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"public_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ssh-keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ssh-keys"
+              ]
+            },
+            "description": "Adds an SSH key to your account."
+          },
+          "response": [
+            {
+              "id": "9c87553e-eb6a-418c-838e-4c0851bceea2",
+              "name": "SSH key added successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"public_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"public_key\": \"<string>\",\n    \"private_key\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-9c87553e-eb6a-418c-838e-4c0851bceea2"
+            },
+            {
+              "id": "e48c20a8-ad2c-4681-8ce5-da15b126dd13",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"public_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-e48c20a8-ad2c-4681-8ce5-da15b126dd13"
+            },
+            {
+              "id": "b205d3c5-e4be-4b7a-a59c-07d362dc2544",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"public_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-b205d3c5-e4be-4b7a-a59c-07d362dc2544"
+            },
+            {
+              "id": "25c8d36e-6335-4445-9469-b94d043f0a8a",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"public_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/ssh-keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ssh-keys"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-25c8d36e-6335-4445-9469-b94d043f0a8a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:24.000Z",
+          "updatedAt": "2026-07-28T02:02:24.000Z",
+          "uid": "35240-37db9082-7846-4cbf-ac72-f95013ea2e23"
+        }
+      ],
+      "id": "8c923d80-df19-41c5-a2d7-09026ca8459d",
+      "createdAt": "2026-07-28T02:02:24.000Z",
+      "updatedAt": "2026-07-28T02:02:24.000Z",
+      "uid": "35240-8c923d80-df19-41c5-a2d7-09026ca8459d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.lambdalabs.com/api/v1"
+    }
+  ]
+}

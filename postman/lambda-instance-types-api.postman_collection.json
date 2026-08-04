@@ -1,0 +1,183 @@
+{
+  "info": {
+    "_postman_id": "b2decc26-ca2a-4fc2-85de-25331b3187d0",
+    "name": "Lambda Cloud File Systems Instance Types API",
+    "description": "The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.\n\nContact Support:\n Name: Lambda Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:22.000Z",
+    "updatedAt": "2026-07-28T02:02:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b2decc26-ca2a-4fc2-85de-25331b3187d0"
+  },
+  "item": [
+    {
+      "name": "instance-types",
+      "item": [
+        {
+          "name": "List Instance Types",
+          "id": "4e0acddf-f79e-4745-b94a-b36bad5e494e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/instance-types",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instance-types"
+              ]
+            },
+            "description": "Returns a list of available instance types with their specifications and region availability."
+          },
+          "response": [
+            {
+              "id": "1dee375b-3199-4fc4-a030-0b997673435c",
+              "name": "A list of available instance types.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instance-types",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instance-types"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"ut_fc\": {\n      \"instance_type\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"price_cents_per_hour\": \"<integer>\",\n        \"specs\": {\n          \"vcpus\": \"<integer>\",\n          \"memory_gib\": \"<integer>\",\n          \"storage_gib\": \"<integer>\"\n        }\n      },\n      \"regions_with_capacity_available\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    },\n    \"sunt_cd\": {\n      \"instance_type\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"price_cents_per_hour\": \"<integer>\",\n        \"specs\": {\n          \"vcpus\": \"<integer>\",\n          \"memory_gib\": \"<integer>\",\n          \"storage_gib\": \"<integer>\"\n        }\n      },\n      \"regions_with_capacity_available\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:02:22.000Z",
+              "updatedAt": "2026-07-28T02:02:22.000Z",
+              "uid": "35240-1dee375b-3199-4fc4-a030-0b997673435c"
+            },
+            {
+              "id": "9974a161-c222-4e39-9d8f-f7ff2b55acd2",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instance-types",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instance-types"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:22.000Z",
+              "updatedAt": "2026-07-28T02:02:22.000Z",
+              "uid": "35240-9974a161-c222-4e39-9d8f-f7ff2b55acd2"
+            },
+            {
+              "id": "85242f9a-6c20-43c3-a821-682cd170e30c",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instance-types",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instance-types"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:22.000Z",
+              "updatedAt": "2026-07-28T02:02:22.000Z",
+              "uid": "35240-85242f9a-6c20-43c3-a821-682cd170e30c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:22.000Z",
+          "updatedAt": "2026-07-28T02:02:22.000Z",
+          "uid": "35240-4e0acddf-f79e-4745-b94a-b36bad5e494e"
+        }
+      ],
+      "id": "b9233555-6bba-4128-b343-b62da5fb3722",
+      "createdAt": "2026-07-28T02:02:22.000Z",
+      "updatedAt": "2026-07-28T02:02:22.000Z",
+      "uid": "35240-b9233555-6bba-4128-b343-b62da5fb3722"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.lambdalabs.com/api/v1"
+    }
+  ]
+}

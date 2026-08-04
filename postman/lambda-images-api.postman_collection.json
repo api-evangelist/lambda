@@ -1,0 +1,183 @@
+{
+  "info": {
+    "_postman_id": "67988163-9dfd-4eb1-95d6-ef8a50631e55",
+    "name": "Lambda Cloud File Systems Images API",
+    "description": "The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.\n\nContact Support:\n Name: Lambda Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:21.000Z",
+    "updatedAt": "2026-07-28T02:02:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-67988163-9dfd-4eb1-95d6-ef8a50631e55"
+  },
+  "item": [
+    {
+      "name": "images",
+      "item": [
+        {
+          "name": "List Images",
+          "id": "e0e6e8fe-9bf4-499b-9368-d004b8b53775",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/images",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "images"
+              ]
+            },
+            "description": "Returns a list of available machine images."
+          },
+          "response": [
+            {
+              "id": "b707d77e-c7c1-4b86-8358-e402bb5df3a9",
+              "name": "A list of available images.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/images",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "images"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-b707d77e-c7c1-4b86-8358-e402bb5df3a9"
+            },
+            {
+              "id": "393c37d6-b911-45a4-b036-39f0ccde8c4b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/images",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "images"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-393c37d6-b911-45a4-b036-39f0ccde8c4b"
+            },
+            {
+              "id": "5511373d-14cf-410f-901e-f6b800bb8766",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/images",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "images"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-5511373d-14cf-410f-901e-f6b800bb8766"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:21.000Z",
+          "updatedAt": "2026-07-28T02:02:21.000Z",
+          "uid": "35240-e0e6e8fe-9bf4-499b-9368-d004b8b53775"
+        }
+      ],
+      "id": "379cce86-ee08-49f8-91b3-697f3ce776fd",
+      "createdAt": "2026-07-28T02:02:21.000Z",
+      "updatedAt": "2026-07-28T02:02:21.000Z",
+      "uid": "35240-379cce86-ee08-49f8-91b3-697f3ce776fd"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.lambdalabs.com/api/v1"
+    }
+  ]
+}
