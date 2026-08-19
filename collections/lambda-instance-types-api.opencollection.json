@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lambda Cloud File Systems Instance Types API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instance Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Instance Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.lambdalabs.com/api/v1/instance-types"
+          },
+          "docs": "Returns a list of available instance types with their specifications and region availability."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

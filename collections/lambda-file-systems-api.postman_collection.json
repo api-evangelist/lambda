@@ -1,0 +1,201 @@
+{
+  "item": [
+    {
+      "id": "b0e937e5-75cb-4fe6-a12e-f2c020f45b8a",
+      "name": "File Systems",
+      "description": {
+        "content": "Operations for managing persistent storage file systems.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c66c7636-e97f-49a7-bce1-db50dcb2befd",
+          "name": "List File Systems",
+          "request": {
+            "name": "List File Systems",
+            "description": {
+              "content": "Returns a list of persistent storage file systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file-systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57c694ec-1349-45f6-9282-14f32c194a13",
+              "name": "A list of file systems.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"created\": \"1974-07-16T04:30:01.174Z\",\n      \"mount_point\": \"string\",\n      \"region\": {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"created\": \"2010-01-05T22:40:41.819Z\",\n      \"mount_point\": \"string\",\n      \"region\": {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0485bc4c-d9fe-42cd-8cb9-d0d41ae409b9",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a298565-c657-44b5-b90c-9462e6805c82",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.lambdalabs.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47deddcc-188f-4177-8a3a-d4309b44ff84",
+    "name": "Lambda Cloud File Systems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.\n\nContact Support:\n Name: Lambda Support",
+      "type": "text/plain"
+    }
+  }
+}

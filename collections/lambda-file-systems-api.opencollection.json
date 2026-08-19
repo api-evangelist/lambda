@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lambda Cloud File Systems API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List File Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.lambdalabs.com/api/v1/file-systems"
+          },
+          "docs": "Returns a list of persistent storage file systems."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

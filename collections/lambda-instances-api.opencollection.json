@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lambda Cloud File Systems Instances API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Running Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.lambdalabs.com/api/v1/instances"
+          },
+          "docs": "Returns a list of all running instances in your account."
+        },
+        {
+          "info": {
+            "name": "Launch An Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.lambdalabs.com/api/v1/instance-operations/launch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launches one or more instances with the given configuration. Returns the IDs of the launched instances."
+        },
+        {
+          "info": {
+            "name": "Restart Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.lambdalabs.com/api/v1/instance-operations/restart",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restarts the given instances."
+        },
+        {
+          "info": {
+            "name": "Terminate Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.lambdalabs.com/api/v1/instance-operations/terminate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Terminates the given instances."
+        },
+        {
+          "info": {
+            "name": "Get Instance Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.lambdalabs.com/api/v1/instances/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the instance."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

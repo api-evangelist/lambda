@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lambda Cloud File Systems SSH Keys API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSH Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SSH Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.lambdalabs.com/api/v1/ssh-keys"
+          },
+          "docs": "Returns a list of SSH keys saved in your account."
+        },
+        {
+          "info": {
+            "name": "Add SSH Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.lambdalabs.com/api/v1/ssh-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds an SSH key to your account."
+        },
+        {
+          "info": {
+            "name": "Delete SSH Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.lambdalabs.com/api/v1/ssh-keys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SSH key."
+              }
+            ]
+          },
+          "docs": "Deletes an SSH key from your account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
