@@ -58,7 +58,7 @@ apis:
   humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
   baseURL: https://cloud.lambdalabs.com/api/v1
   tags:
-  - Filesystem
+  - File Systems
   tags_raw:
   - File Systems
   properties:
