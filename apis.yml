@@ -127,6 +127,9 @@ apis:
   - type: APIReference
     url: https://cloud.lambdalabs.com/api/v1/docs
 common:
+  - type: CapabilityMap
+    url: capabilities/lambda-capability-edges.yml
+    name: Lambda Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/lambda/overview
   - type: AgenticAccess
