@@ -128,6 +128,8 @@ apis:
   - type: APIReference
     url: https://cloud.lambdalabs.com/api/v1/docs
 common:
+  - type: Website
+    url: https://www.lambda.ai/
   - type: CapabilityMap
     url: capabilities/lambda-capability-edges.yml
     name: Lambda Business Capability Map
