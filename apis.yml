@@ -53,22 +53,6 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/lambda/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
-- aid: lambda:lambda-file-systems-api
-  name: Lambda File Systems API
-  description: Operations for managing persistent storage file systems.
-  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
-  baseURL: https://cloud.lambdalabs.com/api/v1
-  tags:
-  - Filesystem
-  tags_raw:
-  - File Systems
-  properties:
-  - type: OpenAPI
-    url: openapi/lambda-file-systems-api-openapi.yml
-  - type: Documentation
-    url: https://docs.lambda.ai/public-cloud/cloud-api/
-  - type: APIReference
-    url: https://cloud.lambdalabs.com/api/v1/docs
 - aid: lambda:lambda-images-api
   name: Lambda Images API
   description: Operations for listing available machine images.
@@ -123,6 +107,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/lambda-ssh-keys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lambda.ai/public-cloud/cloud-api/
+  - type: APIReference
+    url: https://cloud.lambdalabs.com/api/v1/docs
+- aid: lambda:lambda-filesystems-api
+  name: Lambda Filesystems API
+  description: Operations for managing persistent storage file systems.
+  humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
+  baseURL: https://cloud.lambdalabs.com/api/v1
+  tags:
+  - Filesystems
+  properties:
+  - type: OpenAPI
+    url: openapi/lambda-filesystems-api-openapi.yml
   - type: Documentation
     url: https://docs.lambda.ai/public-cloud/cloud-api/
   - type: APIReference
