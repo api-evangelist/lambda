@@ -1,11 +1,7 @@
 {
   "provider": "lambda",
   "sources": [
-    "lambda-file-systems-api-openapi.yml",
-    "lambda-images-api-openapi.yml",
-    "lambda-instance-types-api-openapi.yml",
-    "lambda-instances-api-openapi.yml",
-    "lambda-ssh-keys-api-openapi.yml"
+    "_original/lambda-cloud-api-openapi.yml"
   ],
   "outputs": [
     "lambda-file-systems-api-openapi.yml",
@@ -14,9 +10,22 @@
     "lambda-instances-api-openapi.yml",
     "lambda-ssh-keys-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "lambda-cloud-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: lambda-filesystems-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
+  ],
+  "skipped": [
+    "lambda-filesystems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lambda-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lambda-instance-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lambda-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lambda-ssh-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

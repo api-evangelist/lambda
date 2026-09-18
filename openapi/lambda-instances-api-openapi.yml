@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lambda Cloud File Systems Instances API
+  title: Lambda Cloud Instances API
   description: The Lambda Cloud API allows you to manage GPU cloud instances programmatically. You can launch, list, restart, and terminate instances, manage SSH keys, list available instance types and images, and manage persistent storage file systems through a RESTful interface.
   version: v1
   contact:
@@ -247,37 +247,15 @@ paths:
           description: Internal Server Error.
 components:
   schemas:
-    LaunchInstanceRequest:
+    Region:
       type: object
-      required:
-      - region_name
-      - instance_type_name
-      - ssh_key_names
       properties:
-        region_name:
-          type: string
-          description: The region to launch the instance in.
-        instance_type_name:
-          type: string
-          description: The type of instance to launch.
-        ssh_key_names:
-          type: array
-          items:
-            type: string
-          description: SSH key names to attach to the instance.
-        file_system_names:
-          type: array
-          items:
-            type: string
-          description: File system names to attach to the instance.
-        quantity:
-          type: integer
-          minimum: 1
-          maximum: 1
-          description: Number of instances to launch (currently max 1).
         name:
           type: string
-          description: A name for the instance.
+          description: Region identifier.
+        description:
+          type: string
+          description: Human-readable region name.
     Instance:
       type: object
       properties:
@@ -327,15 +305,37 @@ components:
         jupyter_url:
           type: string
           description: URL for accessing the Jupyter notebook.
-    Region:
+    LaunchInstanceRequest:
       type: object
+      required:
+      - region_name
+      - instance_type_name
+      - ssh_key_names
       properties:
+        region_name:
+          type: string
+          description: The region to launch the instance in.
+        instance_type_name:
+          type: string
+          description: The type of instance to launch.
+        ssh_key_names:
+          type: array
+          items:
+            type: string
+          description: SSH key names to attach to the instance.
+        file_system_names:
+          type: array
+          items:
+            type: string
+          description: File system names to attach to the instance.
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 1
+          description: Number of instances to launch (currently max 1).
         name:
           type: string
-          description: Region identifier.
-        description:
-          type: string
-          description: Human-readable region name.
+          description: A name for the instance.
   securitySchemes:
     apiKey:
       type: http

@@ -117,6 +117,8 @@ apis:
   humanURL: https://docs.lambda.ai/public-cloud/cloud-api/
   baseURL: https://cloud.lambdalabs.com/api/v1
   tags:
+  - Filesystem
+  tags_raw:
   - Filesystems
   properties:
   - type: OpenAPI
